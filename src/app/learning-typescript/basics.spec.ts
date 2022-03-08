@@ -85,7 +85,7 @@ describe('variable, data types, typing', () => {
 
 
         // dot notation
-        let sentence = `${dudeTeaching.name} drives a ${vehicle.model} his engine is a ${vehicle.engine.type}`; 
+        let sentence = `${dudeTeaching.name} drives a ${vehicle.model} his engine is a ${vehicle.engine.type}`;
         let randomProperty = 'make';
         // const vehicleMake = vehicle[make]; // atlas 
 
@@ -102,7 +102,7 @@ describe('variable, data types, typing', () => {
         const people = ['lee', 'michelle', 'sam', 'max'];
         const morePeople = new Array<string>();
         morePeople.push('praveen');
-        morePeople.push('angel'); ['praveen', 'angle']
+        morePeople.push('angel');['praveen', 'angle']
 
         const empty = [];
 
@@ -115,6 +115,25 @@ describe('variable, data types, typing', () => {
     it('object and array practice', () => {
 
         // creat a very descriptive object about you
+        interface Sibling {
+            name: string;
+            occupation: string;
+        }
+
+        interface humanAwesomeness {
+            firstName: string;
+            lastName: string;
+            age: number;
+            isMarried: boolean;
+            siblings: {
+                name: string;
+                occupation: string;
+            }[];
+            occupation: string;
+            vehicle: string;
+            catchphrase: string;
+        }
+
         const byron = {
             firstName: 'byron',
             lastName: 'brown',
@@ -130,7 +149,7 @@ describe('variable, data types, typing', () => {
             vehicle: 'talking car from that 80s show',
             catchphrase: 'i want to be like michelle when i grow up'
         }
-        
+
     });
 
     it('forgot to talk about booleans', () => {
@@ -176,3 +195,158 @@ describe('variable, data types, typing', () => {
 
     });
 });
+
+describe('typing in typescript', () => {
+    it('should talk about basic typing', () => {
+        const someThing: string = 'jibber jabber';
+        let someNum: number;
+
+        // someNum = true; // not allowed hippies
+        someNum = 41_569_526_156_156; // you can use underscores in numbers
+
+        const anime: { name: string, year: number, isGreatestAnimeEver: boolean } = {
+            name: 'yu yu hakusho',
+            year: 1992,
+            isGreatestAnimeEver: true
+        }
+
+        const releaseYear: number = anime.year;
+        // anime.isGreatestAnimeEver = 'no'; not allowed
+
+        let faveFoods: string[] = ['taco', 'chicken', 'spinach', 'beer'];
+        let peopleWhoScareMe: Array<string> = ['wife', 'daughter', 'mom'];
+
+        // faveFoods.push(75);
+    });
+
+    it('should talk interfaces and union types and type alias', () => {
+        interface AnimeInfo {
+            name: string;
+            year: number;
+            dubs: boolean;
+        }
+
+        const dbz: AnimeInfo = {
+            name: 'dragonball z',
+            year: 1989,
+            dubs: true
+        }
+
+        interface Movie {
+            title: string;
+            director: string;
+            yearReleased: number;
+            awards?: string[]; // optional property
+        };
+
+        const userFaves: (Movie | AnimeInfo)[] = []
+        const userFaves2: Movie[] | AnimeInfo[] = []
+
+
+        const starWars: Movie = {
+            title: 'Star Wars',
+            director: 'Lucas',
+            yearReleased: 1977
+        }
+
+        userFaves.push(dbz);
+        userFaves.push(starWars);
+
+        // [
+        //     {
+        //         name: 'dragonball z',
+        //         year: 1989,
+        //         dubs: true
+        //     },
+        //     {
+        //         title: 'Star Wars',
+        //         director: 'Lucas',
+        //         yearReleased: 1977
+        //     }
+
+        // ]
+
+
+        let doesByronWantLunch: string | undefined = 'yes';
+
+        // doesByronWantLunch = true;
+
+        type Media = AnimeInfo | Movie; // | Music | TvShow
+
+        let faveMedia: Media;
+
+
+    });
+
+    it('is about enums byron is lazy', () => {
+        enum Direction {
+            Up = 0,
+            Down = 1,
+            Left = 2,
+            Right = 3,
+        }
+
+        let startingDirection = Direction.Left;
+
+        let sum = Direction.Down + 2; // 3
+    });
+
+    it('interface practice', () => {
+        // define a descriptive cat interface
+
+        interface MichelleCat {
+            name: string,
+            age: number,
+            breed: string,
+            color: string,
+            isLongHaired: boolean,
+            favoriteToys: CatToy[],
+            siblings?: string[],
+        }
+
+        interface CatToy {
+            brand: string,
+            type: string,
+            name: string,
+        }
+
+        interface LeeCat {
+            name: string;
+            age: number;
+            color: string;
+            isFluffy: boolean;
+            isChonky: boolean;
+            isLong: boolean;
+            isHacker?: boolean;
+        }
+
+        const myCat: LeeCat = {
+            name: 'Fantasia',
+            age: 3,
+            color: 'Black',
+            isFluffy: true,
+            isChonky: true,
+            isLong: true,
+        }
+
+        interface BlairCat {
+            name: string;
+            furColor: string;
+            age: number;
+            hasBeenNeutered: boolean;
+            hasShots: boolean;
+            weight: number;
+            gender: string;
+            kittens?: BlairCat[]
+        }
+
+        type Cat = MichelleCat | LeeCat | BlairCat;
+
+        let someCreature: Cat; // emily's fault
+
+        // initialize an instance of the cat interface
+    });
+
+});
+
+
