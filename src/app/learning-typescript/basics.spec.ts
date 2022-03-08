@@ -346,7 +346,191 @@ describe('typing in typescript', () => {
 
         // initialize an instance of the cat interface
     });
+});
 
+describe('is useful to talk about basic js/ts structures', () => {
+    it('should talk about operators', () => {
+        // assign op 
+        // 1 equal
+        let max = 'awesome';
+        let kerry = 'cool';
+
+        // comparison
+        // == don't use double equal
+        // === triple equal
+        max === kerry // false
+
+        // MATH!!!
+
+        // Operator	Description
+        // +	Addition
+        // does normal math w/ 2 numbers
+        // if number and string used will convert to string
+        let str = max + 7 // 'awesome7'
+        // -	Subtraction
+        // *	Multiplication
+        // /	Division
+        // %	Modulus (Division Remainder)
+        10 % 7 // 3
+        6 % 2 // any mod off 2 w/ 0 result is even
+        // ++	Increment
+        let num = 0;
+        num++; // 1 // do whatever on this line and then increment
+        ++num; // 2 // increment then do whatever on this line
+
+
+        // Operator	Example	Same As
+        // =	x = y	x = y
+        // +=	x += y	x = x + y
+        // -=	x -= y	x = x - y
+        // *=	x *= y	x = x * y
+        // /=	x /= y	x = x / y
+        // %=	x %= y	x = x % y
+
+        num = num + 1;
+        num += 1;
+        // also works w/ strings
+
+        let inClass = 'luke';
+        inClass += max + kerry;
+        //lukeawesomecool
+    });
+
+    it('conditionals', () => {
+        let numOfStudents = 8;
+        let condition = true;
+        let anotherCondition = true;
+
+        // && and ||
+
+        if (condition && anotherCondition) {
+            // both are true
+        }
+
+        if (condition || anotherCondition) {
+            // one of them has to be true
+        }
+
+        if ((condition || anotherCondition) && numOfStudents > 4){
+            //
+        }
+
+
+
+        if (condition) {
+            // positive
+        }
+
+        if (condition) {
+            // pos
+        } else {
+            // neg
+        }
+
+        if (condition) {
+            // pos
+            // nested if?? 
+        } else if(anotherCondition) {
+            // more pos
+        } else {
+            // this is technically optional
+        }
+
+
+        // ternary
+        // short-hand conditional
+        let isAwesome: string = condition === true ? 'yup' : 'nope';
+
+        if (condition === true) {
+            isAwesome = 'yup';
+        } else {
+            isAwesome = 'nope';
+        }
+
+        const isTurkey = true;
+
+        let isBacon: boolean | string = condition ? true : (isTurkey ? 'no, its turkey' : 'its cardboard');
+
+    });
+
+    it('loop exist', () => {
+        const zooAnimals = ['zebra', 'turkeys', 'heffalumps'];
+        
+        for (let index = 0; index < zooAnimals.length; index++) {
+            zooAnimals[index]
+        }
+
+        for (const animal of zooAnimals) {
+            console.log(animal)
+            // this is where you do something w/ the value
+        }
+
+        let student = {
+            name: 'byron',
+            age: 32,
+            isCoffeed: true
+        }
+
+        for (const key in student) {
+            // key = 'name'
+            // key = '32'
+            // key = 'isCoffeed'
+        }
+    });
+
+    it('fun syntatic sugar part 1', () => {
+        let grandParent: any | undefined = {
+            parent: {
+                child: {
+                    grandChild: 'dave'
+                }
+            }
+        }
+        let grandParent2 = {
+            parent: {
+                taco: 'what'
+            }
+        }
+
+        // short circuting
+        // if (grandParent2.parent.child.grandChild === 'jeff')
+        // cannot read child of undefined
+        if (grandParent && grandParent.parent && grandParent.parent.child && grandParent.parent.child.grandChild === 'dave') {
+
+        }
+
+        // elvis operator
+        // optional chaining
+        if (grandParent?.parent?.child?.grandChild === 'dave') {}
+
+        // let childName = grandParent2?.parent?.child?.grandChild ?? 'bob';
+    });
+});
+
+describe('functions', () => {
+    let sum = addTwoNumbers(2, 4); // 6
+
+    // hoisted
+    function addTwoNumbers(parameter1: number, parameter2: number): number {
+        return parameter1 + parameter2;
+    }
+
+    const addToSeven = (firstNum: number) => { 
+        // if you have more than one executable line you need curlies
+        return firstNum + 7;
+    }
+
+    const logNumber = (someNum: number): void => {
+        console.log(someNum);
+    }
+
+    const addNumbers = (num1: number, num2: number = 5) => num1 + num2;
+
+    const pizzaFunction = function(toppings: string[]) {
+        
+    }
+
+    let fifteen = addToSeven(8) // 15
 });
 
 
