@@ -508,29 +508,37 @@ describe('is useful to talk about basic js/ts structures', () => {
 });
 
 describe('functions', () => {
-    let sum = addTwoNumbers(2, 4); // 6
+    it('basic function stuff', () => {        
+        let sum = addTwoNumbers(2, 4); // 6
+    
+        // hoisted
+        function addTwoNumbers(parameter1: number, parameter2: number): number {
+            return parameter1 + parameter2;
+        }
+    
+        const addToSeven = (firstNum: number) => { 
+            // if you have more than one executable line you need curlies
+            return firstNum + 7;
+        }
+    
+        const logNumber = (someNum: number): void => {
+            console.log(someNum);
+        }
+    
+        const addNumbers = (num1: number, num2: number = 5) => num1 + num2;
+    
+        const pizzaFunction = function(toppings: string[]) {
+    
+        }
+    
+        let fifteen = addToSeven(8) // 15
+    });
 
-    // hoisted
-    function addTwoNumbers(parameter1: number, parameter2: number): number {
-        return parameter1 + parameter2;
-    }
-
-    const addToSeven = (firstNum: number) => { 
-        // if you have more than one executable line you need curlies
-        return firstNum + 7;
-    }
-
-    const logNumber = (someNum: number): void => {
-        console.log(someNum);
-    }
-
-    const addNumbers = (num1: number, num2: number = 5) => num1 + num2;
-
-    const pizzaFunction = function(toppings: string[]) {
-        
-    }
-
-    let fifteen = addToSeven(8) // 15
+    it('function and stuff practice', () => {
+        // write a function 
+        // that take a number
+        // reuturns true of fals if the numb is even
+    });
 });
 
 
