@@ -411,7 +411,7 @@ describe('is useful to talk about basic js/ts structures', () => {
             // one of them has to be true
         }
 
-        if ((condition || anotherCondition) && numOfStudents > 4){
+        if ((condition || anotherCondition) && numOfStudents > 4) {
             //
         }
 
@@ -430,7 +430,7 @@ describe('is useful to talk about basic js/ts structures', () => {
         if (condition) {
             // pos
             // nested if?? 
-        } else if(anotherCondition) {
+        } else if (anotherCondition) {
             // more pos
         } else {
             // this is technically optional
@@ -455,7 +455,7 @@ describe('is useful to talk about basic js/ts structures', () => {
 
     it('loop exist', () => {
         const zooAnimals = ['zebra', 'turkeys', 'heffalumps'];
-        
+
         for (let index = 0; index < zooAnimals.length; index++) {
             zooAnimals[index]
         }
@@ -501,36 +501,40 @@ describe('is useful to talk about basic js/ts structures', () => {
 
         // elvis operator
         // optional chaining
-        if (grandParent?.parent?.child?.grandChild === 'dave') {}
+        if (grandParent?.parent?.child?.grandChild === 'dave') { }
 
         // let childName = grandParent2?.parent?.child?.grandChild ?? 'bob';
     });
 });
 
 describe('functions', () => {
-    it('basic function stuff', () => {        
+    it('basic function stuff', () => {
         let sum = addTwoNumbers(2, 4); // 6
-    
+
         // hoisted
         function addTwoNumbers(parameter1: number, parameter2: number): number {
             return parameter1 + parameter2;
         }
-    
-        const addToSeven = (firstNum: number) => { 
+
+        const addToSeven = (firstNum: number) => {
             // if you have more than one executable line you need curlies
             return firstNum + 7;
         }
-    
+
         const logNumber = (someNum: number): void => {
             console.log(someNum);
         }
-    
-        const addNumbers = (num1: number, num2: number = 5) => num1 + num2;
-    
-        const pizzaFunction = function(toppings: string[]) {
-    
+
+        const addNumbers = (num1: number, num2: number = 5, num3?: number) => num1 + num2 + (num3 ? num3 : 0);
+
+        addNumbers(7) // 12
+        addNumbers(7, 2); // 9
+        addNumbers(7, 2, 1); // 10
+
+        const pizzaFunction = function (toppings: string[]) {
+
         }
-    
+
         let fifteen = addToSeven(8) // 15
     });
 
@@ -538,6 +542,66 @@ describe('functions', () => {
         // write a function 
         // that take a number
         // reuturns true of fals if the numb is even
+        const isEven = (num: number) => !(num % 2);
+    });
+
+    type functionThatTakesNothingAndGivesNothing = () => void;
+
+    it('should be a higher order function', () => {
+        function doSomethingThenSomethingElse(someThingElseToDo: functionThatTakesNothingAndGivesNothing) {
+            // do something
+            // bunch of lines of programmers
+            // stuff that makes us look super smarterest
+            someThingElseToDo()
+        }
+
+        doSomethingThenSomethingElse(() => console.log('hey buddy, did the thing'))
+
+        function doSomethingWithResult(callBackFromUser: (taco: string) => void) {
+            //  pretent we made an api call that returned a pokemon name
+            let pokemonName = 'pikachu' // pretend it was the call
+
+            callBackFromUser(pokemonName);
+        }
+
+        doSomethingWithResult((data) => console.log(data));
+    });
+
+    it('uses array functions', () => {
+        const array1 = [1, 4, 9, 16];
+
+        // this was awful what was he thinking
+        // let fakeMap = (arr: any[], mutater: any) => {
+        //     let copy = [...arr]
+        //     for (const index of copy) {
+        //         index = mutater(index);
+        //     }
+        //     return copy;
+        // }
+
+        // pass a function to map
+        // create a copy, manipulate each element in the copied array
+        // passed on the function i provided
+        // and return the mutated copy
+        const map1 = array1.map(x => x * 2); // expected output: Array [2, 8, 18, 32];
+        let words = ['spray', 'limit', 'elite', 'exuberant', 'destruction', 'present'];
+        words = words.filter(word => word.length > 6);
+    })
+
+    it('map practice', () => {
+        let numeros = [1,6,3,8,6,9,9];
+
+        let arrOfBools: boolean[];
+
+        const isEven = (num: number) => !(num % 2);
+
+        // using a named anon func
+        arrOfBools = numeros.map(isEven);
+
+        // using an anon func
+        arrOfBools = numeros.map((i: number) => !(i%2));
+
+        // use map to take numeros initialze and array of booleans determining if the numbers are even or not
     });
 });
 
