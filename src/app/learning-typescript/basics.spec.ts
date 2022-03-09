@@ -1,3 +1,11 @@
+import { getStudentCount } from '../utils/get-student-count';
+import { isEven as someFunc } from '../utils/is-even'; // importing just what i needed from just where i needed
+import * as OtherUtils from '../utils/other-utils'; // everyting in otherUtils file
+// import { AnimeInfo } from "../interfaces/anime-info.interface";
+import { Movie } from "../interfaces/movie.interface";
+import { MichelleCat, LeeCat, BlairCat, AnimeInfo as Anime } from "../interfaces";
+import { addTwoNumbers } from '../utils/add-two-numbers';
+
 describe('variable, data types, typing', () => {
     it('should declare a variable', () => {
         // declaring and initialize
@@ -28,6 +36,7 @@ describe('variable, data types, typing', () => {
         const n5 = 0b11011; // base 2 - binary.
         const n6 = Infinity;
         const n7 = -Infinity;
+        const n8 = 1_156_597_879;
 
         // strings
         const boringString = new String('boooooooooring');
@@ -134,21 +143,7 @@ describe('variable, data types, typing', () => {
             catchphrase: string;
         }
 
-        const byron = {
-            firstName: 'byron',
-            lastName: 'brown',
-            age: 32,
-            isMarried: true,
-            siblings: [
-                {
-                    name: 'angel',
-                    occupation: 'annoying'
-                }
-            ],
-            occupation: 'apple sauce dispencer',
-            vehicle: 'talking car from that 80s show',
-            catchphrase: 'i want to be like michelle when i grow up'
-        }
+        const byron = OtherUtils.instructor;
 
     });
 
@@ -220,27 +215,18 @@ describe('typing in typescript', () => {
     });
 
     it('should talk interfaces and union types and type alias', () => {
-        interface AnimeInfo {
-            name: string;
-            year: number;
-            dubs: boolean;
-        }
 
-        const dbz: AnimeInfo = {
+
+        const dbz: Anime = {
             name: 'dragonball z',
             year: 1989,
             dubs: true
         }
 
-        interface Movie {
-            title: string;
-            director: string;
-            yearReleased: number;
-            awards?: string[]; // optional property
-        };
 
-        const userFaves: (Movie | AnimeInfo)[] = []
-        const userFaves2: Movie[] | AnimeInfo[] = []
+
+        const userFaves: (Movie | Anime)[] = []
+        const userFaves2: Movie[] | Anime[] = []
 
 
         const starWars: Movie = {
@@ -271,7 +257,7 @@ describe('typing in typescript', () => {
 
         // doesByronWantLunch = true;
 
-        type Media = AnimeInfo | Movie; // | Music | TvShow
+        type Media = Anime | Movie; // | Music | TvShow
 
         let faveMedia: Media;
 
@@ -294,51 +280,19 @@ describe('typing in typescript', () => {
     it('interface practice', () => {
         // define a descriptive cat interface
 
-        interface MichelleCat {
-            name: string,
-            age: number,
-            breed: string,
-            color: string,
-            isLongHaired: boolean,
-            favoriteToys: CatToy[],
-            siblings?: string[],
-        }
+        
 
-        interface CatToy {
-            brand: string,
-            type: string,
-            name: string,
-        }
 
-        interface LeeCat {
-            name: string;
-            age: number;
-            color: string;
-            isFluffy: boolean;
-            isChonky: boolean;
-            isLong: boolean;
-            isHacker?: boolean;
-        }
 
-        const myCat: LeeCat = {
-            name: 'Fantasia',
-            age: 3,
-            color: 'Black',
-            isFluffy: true,
-            isChonky: true,
-            isLong: true,
-        }
+        // const myCat: LeeCat = {
+        //     name: 'Fantasia',
+        //     age: 3,
+        //     color: 'Black',
+        //     isFluffy: true,
+        //     isChonky: true,
+        //     isLong: true,
+        // }
 
-        interface BlairCat {
-            name: string;
-            furColor: string;
-            age: number;
-            hasBeenNeutered: boolean;
-            hasShots: boolean;
-            weight: number;
-            gender: string;
-            kittens?: BlairCat[]
-        }
 
         type Cat = MichelleCat | LeeCat | BlairCat;
 
@@ -512,9 +466,9 @@ describe('functions', () => {
         let sum = addTwoNumbers(2, 4); // 6
 
         // hoisted
-        function addTwoNumbers(parameter1: number, parameter2: number): number {
-            return parameter1 + parameter2;
-        }
+        
+        const numero = 5
+        addTwoNumbers(7, numero);
 
         const addToSeven = (firstNum: number) => {
             // if you have more than one executable line you need curlies
@@ -592,14 +546,16 @@ describe('functions', () => {
         let numeros = [1,6,3,8,6,9,9];
 
         let arrOfBools: boolean[];
-
-        const isEven = (num: number) => !(num % 2);
+        // isEven()
+        // const isEven = (num: number):boolean => !(num % 2);
 
         // using a named anon func
-        arrOfBools = numeros.map(isEven);
+        arrOfBools = numeros.map(someFunc);
 
         // using an anon func
         arrOfBools = numeros.map((i: number) => !(i%2));
+
+        let pie = OtherUtils.PI;
 
         // use map to take numeros initialze and array of booleans determining if the numbers are even or not
     });
